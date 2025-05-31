@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ISell
-{ 
-    int GetSellPrice();
+public enum CropQuality 
+{
+    Normal, Silver, Gold
 }

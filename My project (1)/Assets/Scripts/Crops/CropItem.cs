@@ -5,9 +5,9 @@ using UnityEngine;
 public class CropItem : Item, IStackable, ISell
 {
     public CropQuality quality; 
-    public int Quantity { get; set; }
+    public int quantity { get; set; }
 
-    public void AddQuantity(int amount) => Quantity += amount;
+    public void AddQuantity(int amount) => quantity += amount;
 
     public int GetSellPrice()
     {
