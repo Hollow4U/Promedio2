@@ -7,8 +7,26 @@ public abstract class Crop : MonoBehaviour
     public int currentGrowDay = 0;
     public int totalGrowDays = 3;
     public CropQuality quality;
+    public bool isWatered;
 
-    public abstract void Grow();
+    protected IGrowth growthTime;
+    protected abstract int GetBasePrice();
+
+    public void SetGrowthTime(IGrowth time)
+    {
+        growthTime = time;
+    }
+
+    public void Water()
+    {
+        isWatered = true;
+    }
+
+    public void Grow()
+    {
+        growthTime?.Grow(this);
+    }
+
 
     public bool IsReadyToHarvest
     {
@@ -49,5 +67,5 @@ public abstract class Crop : MonoBehaviour
         }   
     }
 
-    protected abstract int GetBasePrice();
+    
 }
