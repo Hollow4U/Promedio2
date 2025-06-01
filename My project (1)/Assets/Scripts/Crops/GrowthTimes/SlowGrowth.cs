@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class SlowGrowth : IGrowth
 {
     public void Grow(Crop crop)

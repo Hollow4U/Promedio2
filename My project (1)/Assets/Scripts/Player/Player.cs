@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Item selectedItem = InventoryManager.Instance.GetSelectedItem();
+            Debug.Log($"Ítem seleccionado: {selectedItem?.itemname}"); 
             if (selectedItem is IUsable usableItem)
             {
+                Debug.Log("Llamando a Use()"); 
                 usableItem.Use(this);
             }
         }

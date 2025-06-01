@@ -104,8 +104,4 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public void UIupdate()
-    {
-        //feature/game
-    }
 }

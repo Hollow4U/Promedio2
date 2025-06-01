@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewCropItem", menuName = "Items/CropItem")]
 public class CropItem : Item, IStackable, ISell
 {
-    public CropQuality quality; 
-    public int quantity { get; set; }
+    public CropQuality quality;
+    [SerializeField] public int quantity { get; set; }
 
     public void AddQuantity(int amount) => quantity += amount;
 
