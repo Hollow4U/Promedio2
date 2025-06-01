@@ -12,8 +12,13 @@ public class SeedItem : Item, IStackable, IUsable
 
     public void Use(Player player)
     {
- 
+        if (quantity <= 0) return;
         Instantiate(cropPrefab, player.transform.position, Quaternion.identity);
-      
+        quantity--;
+
+        if (quantity == 0)
+        {
+            InventoryManager.Instance.RemoveItem(this, 0); 
+        }
     }
 }
