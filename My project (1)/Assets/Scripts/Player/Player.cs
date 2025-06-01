@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public void UseSelectedItem()
+    private void Update()
     {
-        Item selectedItem = Inventory.GetSelectedItem();
-
-        if (selectedItem is IUsable usableItem)
+        InventoryUse(); 
+        SelectItem();
+    }
+    public void SelectItem()
+    {
+        float scroll = Input.mouseScrollDelta.y;
+        if (scroll != 0)
         {
-            usableItem.Use(this);  
+            int direction = scroll > 0 ? 1 : -1;
+            InventoryManager.Instance.ChangeSelectedItem(direction);
+        }
+    }
+
+    public void InventoryUse()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Item selectedItem = InventoryManager.Instance.GetSelectedItem();
+            if (selectedItem is IUsable usableItem)
+            {
+                usableItem.Use(this);
+            }
         }
     }
 }

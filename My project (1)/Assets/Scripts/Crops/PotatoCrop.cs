@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotatoCrop : MonoBehaviour
+public class PotatoCrop : Crop
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override int GetBasePrice()
     {
-        
+        return 10; 
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        totalGrowDays = 5; 
+         growthTime = new FastGrowth(); 
     }
 }

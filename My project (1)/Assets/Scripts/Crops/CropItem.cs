@@ -11,11 +11,15 @@ public class CropItem : Item, IStackable, ISell
 
     public int GetSellPrice()
     {
-        return quality switch
+        switch (quality)
         {
-            CropQuality.Gold => basePrice * 3,
-            CropQuality.Silver => basePrice * 2,
-            _ => basePrice
-        };
+            case CropQuality.Gold:
+                return basePrice * 3;
+            case CropQuality.Silver:
+                return basePrice * 2;
+            case CropQuality.Normal:
+            default:
+                return basePrice;
+        }
     }
 }

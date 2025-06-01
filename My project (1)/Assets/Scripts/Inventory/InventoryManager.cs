@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     
     public List<Item> inventory = new List<Item>();
 
+    public int selectedIndex = 0;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,6 +20,23 @@ public class InventoryManager : MonoBehaviour
         }
         Instance = this;
     }
+    public Item GetSelectedItem()
+    {
+        if (inventory.Count == 0 || selectedIndex < 0 || selectedIndex >= inventory.Count)
+            return null;
+
+        return inventory[selectedIndex];
+    }
+
+    public void ChangeSelectedItem(int direction)
+    {
+        if (inventory.Count == 0) return;
+
+        selectedIndex = (selectedIndex + direction + inventory.Count) % inventory.Count;
+        Debug.Log($"Ítem seleccionado: {GetSelectedItem()?.itemname}");
+    }
+
+
 
     public void AddItem (Item newItem)
     {

@@ -19,7 +19,15 @@ public abstract class Crop : MonoBehaviour
 
     public void Water()
     {
-        isWatered = true;
+        if (!IsReadyToHarvest)
+        {
+            isWatered = true;
+        }
+        else
+        {
+            isWatered = false; 
+            Debug.Log("¡Este cultivo ya está listo para cosechar!");
+        }
     }
 
     public void Grow()
@@ -46,8 +54,23 @@ public abstract class Crop : MonoBehaviour
         cropItem.quality = this.quality;
         cropItem.quantity = 1;
         cropItem.basePrice = GetBasePrice();
+        if (!IsReadyToHarvest) return null;
+        isWatered = false;
 
         return cropItem;
+    }
+    private void OnMouseDown()
+    {
+        if (IsReadyToHarvest)
+        {
+            isWatered = false;
+            Debug.Log("Cultivo listo para cosecha (riego desactivado)");
+        }
+        else if (Input.GetMouseButtonDown(0)) 
+        {
+            Water(); 
+            Debug.Log($"Cultivo regado. Días restantes: {totalGrowDays - currentGrowDay}");
+        }
     }
 
     protected void AssignQuality()
